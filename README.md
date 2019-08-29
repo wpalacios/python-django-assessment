@@ -1,4 +1,4 @@
-# Movies Application
+# Python Django Assessment
 
 ## Introduction
 
