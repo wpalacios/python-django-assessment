@@ -4,7 +4,7 @@
 
 This application uses Python 3 and Django 1.10. It contains a `Movies` module for managing movie entities.
 
-## Problem statement
+## Assessment statement
 
 ### Task #1
 
