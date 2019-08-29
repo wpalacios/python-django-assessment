@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% load static i18n %} {% block title %}{% trans
+'Movie' %}: {{ object.title }}{% endblock %} {% block content %}
+<h3>{{ object.title }}</h3>
+<div class="row">
+  <div class="col-sm-12">
+    <dl class="dl-horizontal">
+      <!-- TODO: Implement movie details view-->
+    </dl>
+  </div>
+</div>
+{% endblock %}

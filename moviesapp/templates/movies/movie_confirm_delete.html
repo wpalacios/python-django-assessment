@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% load static i18n %} {% block title %}{% trans
+'Movie' %}: {% trans 'Delete' %}{% endblock %} {% block content %}
+
+<h1>{{ object.title }}</h1>
+
+<form
+  class="form-horizontal"
+  method="post"
+  action="{% url 'movies:delete' object.pk %}"
+>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <p>{% trans 'Are you sure you want to delete the movie?' %}</p>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-primary">
+        {% trans 'Yes, delete' %}
+      </button>
+    </div>
+  </div>
+</form>
+{% endblock %}
