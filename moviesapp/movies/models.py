@@ -23,3 +23,7 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movies:detail', kwargs={'pk': self.pk})
+
+class Rating(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField()

@@ -2,14 +2,14 @@
 
 """Movies views."""
 
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from django.contrib import messages
 from django.shortcuts import redirect
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
 
-from .models import Movie
+from .models import Movie, Rating
 
 
 class MovieListView(ListView):
@@ -81,3 +81,12 @@ class MovieDeleteView(DeleteView):
         return redirect(self.redirect_url)
 
 
+class MovieRatingView(View):
+    def post(self, request, pk):
+      try:
+        m = Movie.objects.get(pk=pk)
+        rating = Rating(movie=m, rating=request.POST['rating'])
+        rating.save()
+        return JsonResponse(True, safe=False)
+      except:
+        return JsonResponse(False, safe=False)
