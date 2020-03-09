@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.core.validators import RegexValidator
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
+from django.db.models import Avg
 
 
 class Movie(models.Model):
@@ -23,6 +24,12 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movies:detail', kwargs={'pk': self.pk})
+
+    def rating(self):
+        ratings = self.rating_set.all()
+        average = ratings.aggregate(Avg('rating'))
+        return round(average['rating__avg'], 2) if ratings.count() > 0 else 0
+
 
 class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)

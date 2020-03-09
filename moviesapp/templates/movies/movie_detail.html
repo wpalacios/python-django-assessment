@@ -1,8 +1,9 @@
 {% extends 'base.html' %} {% load static i18n %}{% block title %}
 {% trans 'Movie' %}: {{ object.title }}{% endblock %} {% block content %}
 <div class="mt-md">
-  <h3>{{ object.title }}</h3>
-  <span class="label label-primary">{{ object.rated }}</span>
+  <h2>{{ object.title }}</h2>
+  <h3><span class="glyphicon glyphicon-star"></span> {{ object.rating }}</span></h3>
+  <p><span class="label label-primary">{{ object.rated }}</span></p>
   <div class="row">
     <div class="col-sm-12">
       <dl class="dl-horizontal mt-sm">

@@ -8,14 +8,19 @@ from django.shortcuts import redirect
 from django.http import Http404, JsonResponse
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.db.models import Avg
 
 from .models import Movie, Rating
 
 
 class MovieListView(ListView):
     """Show all movies."""
-
     model = Movie
+
+    def get_queryset(self):
+        # queryset = Movie.objects.all().order_by('-released_on')
+        queryset = Movie.objects.annotate(average=Avg('rating__rating')).order_by('-released_on', '-average')
+        return queryset
 
 
 class MovieDetailView(DetailView):
