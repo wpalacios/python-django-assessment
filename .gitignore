@@ -2,3 +2,4 @@
 __pycache__
 *.db
 venv/
+movies_rating_app.egg-info

@@ -6,7 +6,7 @@ from moviesapp.movies.models import Movie
 class TestMovie(TestCase):
 
     def setUp(self):
-        self.movie = Movie.objects.get(pk=1)
+        self.movie = Movie.objects.get(id=1)
 
     def test_get_absolute_url(self):
         self.assertEqual(

@@ -7,9 +7,9 @@ app_name = "movies"
 
 urlpatterns = [
     url(r'^$', view=views.MovieListView.as_view(), name='index'),
-    url(r'^(?P<pk>[\d\-]+)/$', view=views.MovieDetailView.as_view(), name='detail'),
+    url(r'^(?P<id>[\d\-]+)/$', view=views.MovieDetailView.as_view(), name='detail'),
     url(r'^create/$', view=views.MovieCreateView.as_view(), name='create'),
-    url(r'^update/(?P<pk>[\d\-]+)/$', view=views.MovieUpdateView.as_view(), name='update'),
-    url(r'^delete/(?P<pk>[\d\-]+)/$', view=views.MovieDeleteView.as_view(), name='delete'),
-    url(r'^rating/(?P<pk>[\d\-]+)/$', view=views.MovieRatingView.as_view(), name='rating'),
+    url(r'^update/(?P<id>[\d\-]+)/$', view=views.MovieUpdateView.as_view(), name='update'),
+    url(r'^delete/(?P<id>[\d\-]+)/$', view=views.MovieDeleteView.as_view(), name='delete'),
+    url(r'^rating/(?P<id>[\d\-]+)/$', view=views.MovieRatingView.as_view(), name='rating'),
 ]

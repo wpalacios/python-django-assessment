@@ -7,7 +7,7 @@ from django.db.models import Avg
 
 
 class Movie(models.Model):
-    title = models.CharField(_('Movie\'s title'), max_length=255)
+    title = models.CharField(_('Movie\'s title'), max_length=255, unique=True)
     year = models.PositiveIntegerField(default=2019)
     # Example: PG-13
     rated = models.CharField(max_length=64)
@@ -23,7 +23,7 @@ class Movie(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('movies:detail', kwargs={'pk': self.pk})
+        return reverse('movies:detail', kwargs={'id': self.id})
 
     def rating(self):
         ratings = self.rating_set.all()
