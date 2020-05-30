@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This application uses Python 3 and Django 1.10. It contains a `Movies` module for managing movie entities.
+This application uses Python 3 and Django 3.0.6 It contains a `Movies` module for managing movie entities.
 
 ## Assessment statement
 
