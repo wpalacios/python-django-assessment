@@ -1,1 +1,12 @@
 .vscode
+*.egg-info/
+*.__pychache__
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+./config/__pycache__/
+./moviesapp/movies/__pycache__/
+*.py[cod]
+*.pyc
+*$py.class
+*.cpython-37.pyc

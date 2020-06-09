@@ -144,4 +144,4 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-ADMIN_URL = r'^admin/'
+ADMIN_URL = 'admin/'
