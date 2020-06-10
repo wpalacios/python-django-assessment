@@ -49,7 +49,7 @@ Please **do not** modify unit tests.
 To execute the unit tests, use:
 
 ```
-pip install -q -e . && python setup.py nosetests
+python manage.py test
 ```
 
 To run migrations, use:
