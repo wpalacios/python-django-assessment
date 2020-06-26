@@ -1,0 +1,9 @@
+@import './partials/color.scss';
+
+.HEADER {
+    width: 100vw;
+    background-color: $dark-color;
+    color: $contrast-color;
+    font-size: 2.4rem;
+    padding: 1rem;
+}

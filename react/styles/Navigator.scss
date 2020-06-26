@@ -1,0 +1,12 @@
+@import './partials/color.scss';
+
+.NAVIGATOR {
+    background-color: $very-dark-color;
+    height: calc(100vh - 13rem);
+    margin-left: 3rem;
+    margin-right: 3rem;
+    margin-top: 1rem;
+    padding: 2rem;
+    border-radius: 1rem;
+    overflow: scroll;
+}

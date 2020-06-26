@@ -1,0 +1,6 @@
+export const PAGES = {
+    LIST_PAGE: 'LIST_PAGE',
+    DETAIL_PAGE: 'DETAIL_PAGE',
+    EDIT_PAGE: 'EDIT_PAGE',
+    CREATE_PAGE: 'CREATE_PAGE'
+}

@@ -1,0 +1,47 @@
+@import './partials/color.scss';
+
+.LIST {
+    color: $white;
+    border-radius: 0.5rem;
+}
+
+.LIST__TITLE {
+    color: $contrast-color;
+    font-size: 2.4rem;
+}
+
+.LIST__HR {
+    margin-top: .3rem;
+    background-color: $light-color;
+    height: 1px;
+    width: 100%;
+}
+
+.LIST__ITEM {
+    background-color: $light-color;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding: 1.6rem;
+    border-radius: .6rem;
+    color: $almost-black;
+    transition: 0.2s;
+    &:hover {
+        background-color: $mid-color;
+        cursor: pointer;
+    }
+}
+
+.LIST__ADD {
+    background-color: $contrast-color;
+    text-align: center;
+    font-size: 1.6rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0;
+    font-weight: 100;
+    padding: .4rem;
+    padding-top: .7rem;
+    border-radius: .6rem;
+    color: $white;
+
+}
