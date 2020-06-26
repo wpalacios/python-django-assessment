@@ -1,1 +1,55 @@
-.DELETE {}
+@import './partials/color.scss';
+
+
+.DELETE {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $mid-color;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+    padding: 4rem;
+    border-radius: 1rem;
+}
+.DELETE__WARNING {
+    color: $warning-color;
+}
+.DELETE__TEXT {
+    color: $very-light-color;
+    margin-left: 1rem;
+}
+
+.DELETE__BUTTONS {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 2rem;
+}
+
+.DELETE__CANCEL {
+    background-color: $dark-color;
+    padding: 1rem;
+    border-radius: .5rem;
+    
+    transition: .2s;
+    &:hover {
+        background-color: $light-color;
+        cursor: pointer;
+    }
+}
+
+.DELETE__DELETE {
+    background-color: $contrast-color;
+    padding:1rem;
+    border-radius: .5rem;
+    transition: .3s;
+    color: $very-dark-color;
+    &:hover {
+        background-color: $warning-color;
+        color: $dark-color;
+        cursor: pointer;
+    }
+}

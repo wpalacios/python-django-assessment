@@ -26,6 +26,9 @@
     border-radius: .6rem;
     color: $almost-black;
     transition: 0.2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     &:hover {
         background-color: $mid-color;
         cursor: pointer;
@@ -43,5 +46,4 @@
     padding-top: .7rem;
     border-radius: .6rem;
     color: $white;
-
 }

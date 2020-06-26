@@ -1,2 +1,88 @@
-.DETAIL {}
+@import './partials/color.scss';
 
+.DETAIL {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: $very-light-color;
+    font-size: 1.6rem;
+}
+
+.DETAIL__TITLE {
+    color: $contrast-color;
+    font-size: 2.4rem;
+    margin-bottom: .5rem;
+}
+
+.DETAIL__HR {
+    width: 100%;
+    height: 1px;
+    background-color: $light-color;
+    margin-bottom: .5rem;
+}
+
+.DETAIL__RATING {
+    color: $light-color;
+    font-size: 2rem;
+
+}
+
+.DETAIL__PLOT {
+    margin-top: .7rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    margin-bottom: 1rem;
+}
+
+.DETAIL__PLOT-TAG {
+    color: $light-color;
+}
+
+.DETAIL__BACK {
+    font-size: 2.4rem;
+    position: relative;
+    width: 2.8rem;
+    height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .3rem;
+    transition: .2s;
+    &:hover {
+        background-color: $dark-color;
+        cursor: pointer;
+    }
+}
+
+.DETAIL__EDIT {
+    font-size: 1.6rem;
+    position: relative;
+    width: 2.8rem;
+    height: 2.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .3rem;
+    transition: .2s;
+    &:hover {
+        background-color: $dark-color;
+        cursor: pointer;
+    }
+}
+
+.DETAIL__BUTTONS {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+// .DETAIL__RATED {}
+
+// .DETAIL__RELEASED {}
+
+// .DETAIL__GENRE {}
+
+// .DETAIL__DIRECTOR {}
+
+// .DETAIL__YEAR {}

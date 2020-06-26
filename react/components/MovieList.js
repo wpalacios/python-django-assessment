@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { getAllMovies } from '../network/getAllMovies';
 import { MdAdd } from 'react-icons/md';
+import { PAGES } from '../constants';
 import '../styles/MovieList.scss';
+import Stars from './Stars';
 
 class MovieList extends Component {
     constructor(props) {
@@ -17,17 +19,20 @@ class MovieList extends Component {
         })
     }
 
-
     render() {
         return (
             <div className='LIST'>
                 <div className='LIST__TITLE'>Movies</div>
                 <div className='LIST__HR'/>
                 {this.state.movies.map(movie => {
-                    console.log(movie.fields)
                     return (
-                        <div className='LIST__ITEM' key={movie.pk}>
-                            {movie.fields.title}
+                        <div 
+                            className='LIST__ITEM' 
+                            onClick={() => this.props.navigate(PAGES.DETAIL_PAGE, movie.pk)}
+                            key={movie.pk}
+                        >
+                            <div>{movie.fields.title}</div>
+                            <Stars count={movie.fields.rating}/>
                         </div>
                     );
                 })}

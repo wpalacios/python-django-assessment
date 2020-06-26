@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from './Header';
 import Body from './Body';
-import Footer from './Footer';
 import '../styles/App.scss';
 
 const App = () => {
@@ -9,7 +8,6 @@ const App = () => {
         <div>
             <Header />
             <Body />
-            <Footer />
         </div>
     );
 }

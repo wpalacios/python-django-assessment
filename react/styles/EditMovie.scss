@@ -1,1 +1,74 @@
-.EDIT {}
+@import './partials/color.scss';
+
+.EDIT {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: $very-light-color;
+    font-size: 1.6rem;
+}
+
+.EDIT__TITLE {
+    color: $contrast-color;
+    font-size: 2rem;
+    margin-bottom: .4rem;
+}
+
+.EDIT__INFO {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.EDIT__BOX {
+    display: block;
+    background-color: $light-color;
+    border-radius: .5rem;
+    font-size: 1.6rem;
+    border: 1px solid $very-dark-color;
+    padding: .5rem;
+    margin-bottom: .8rem;
+    margin-top: .2rem;
+    color: $almost-black;
+    &:focus {
+        outline: none !important;
+        border: 1px solid $contrast-color;
+    }
+
+    &--PLOT {
+        max-width: 98%;
+        min-width: 16rem;
+        min-height: 2rem;
+        margin-top: .9rem;
+    }
+}
+
+.EDIT__SUBMIT {
+    background-color: $contrast-color;
+    width: 10rem;
+    padding: .7rem;
+    border-radius: .5rem;
+    color: $dark-color;
+    font-size: 1.6rem;
+    text-align: center;
+    margin: .5rem;
+
+    &:hover {
+        background-color: $lightc-contrast-color;
+        cursor: pointer;
+    }
+
+}
+
+.BLACKOUT {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: $black;
+    opacity: .5;
+    z-index: 4;
+
+}

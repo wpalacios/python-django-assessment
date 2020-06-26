@@ -75,7 +75,8 @@ class MovieUpdateView(UpdateView):
            'released_on',
            'genre',
            'director',
-           'plot'
+           'plot',
+           'rating'
         ]
 
         for param in params:

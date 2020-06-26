@@ -11,3 +11,4 @@ __pycache__/
 *$py.class
 *.cpython-37.pyc
 node_modules
+./moviesapp/static/js/bundle.js

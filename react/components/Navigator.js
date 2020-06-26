@@ -14,7 +14,7 @@ class Navigator extends Component {
             data: null // Not the best. I should be using redux for this
         }
     }
-
+    
     navigate = (page, data) => {
         if (typeof data === 'undefined') {
             data = null;
@@ -23,29 +23,24 @@ class Navigator extends Component {
     }
 
     render() {
-        let displayPage = null;
-
-        if (displayPage === PAGES.DETAIL_PAGE) {
-            displayPage = <MovieDetail 
-                                navigate={this.navigate} 
-                                data={this.state.data} />
-        } else if (displayPage === PAGES.EDIT_PAGE) {
-            displayPage = <EditMovie 
-                                navigate={this.navigate}
-                                data={this.state.data} />
-        } else if (displayPage === PAGES.CREATE_PAGE) {
-            displayPage = <CreateMovie 
-                                navigate={this.navigate} 
-                                data={this.state.data} />
-        } else {
-            displayPage = <MovieList 
-                                navigate={this.navigate} 
-                                data={this.state.data} />
-        }
-
         return (
             <div className='NAVIGATOR'>
-                {displayPage}
+                {this.state.page === PAGES.DETAIL_PAGE && 
+                    <MovieDetail 
+                        navigate={this.navigate} 
+                        data={this.state.data} />}
+                {this.state.page === PAGES.EDIT_PAGE && 
+                    <EditMovie 
+                        navigate={this.navigate} 
+                        data={this.state.data} />}
+                {this.state.page === PAGES.CREATE_PAGE && 
+                    <CreateMovie 
+                        navigate={this.navigate} 
+                        data={this.state.data} />}
+                {this.state.page === PAGES.LIST_PAGE && 
+                    <MovieList 
+                        navigate={this.navigate} 
+                        data={this.state.data} />}
             </div>
         );
     }

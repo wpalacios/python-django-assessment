@@ -1,6 +1,8 @@
 @import './partials/color.scss';
 
 .NAVIGATOR {
+    display: flex;
+    flex-direction: column;
     background-color: $very-dark-color;
     height: calc(100vh - 13rem);
     margin-left: 3rem;
@@ -9,4 +11,5 @@
     padding: 2rem;
     border-radius: 1rem;
     overflow: scroll;
+    
 }

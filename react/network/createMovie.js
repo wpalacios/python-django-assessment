@@ -7,6 +7,7 @@ export const createMovie = (movie, callback) => {
     if (movie.rated === undefined) missing.push('rated');
     if (movie.released_on === undefined) missing.push('released_on');
     if (movie.genre === undefined) missing.push('genre');
+    if (movie.rating === undefined) missing.push('rating');
     if (missing.length !== 0) {
         callback({
             success: false,
@@ -21,7 +22,8 @@ export const createMovie = (movie, callback) => {
         `year=${movie.year}&` + 
         `rated=${movie.rated}&` + 
         `released_on=${movie.released_on}&` +
-        `genre=${movie.genre}`;
+        `genre=${movie.genre}` +
+        `rating=${movie.rating}`;
 
     fetch(route)
         .then(res => {
