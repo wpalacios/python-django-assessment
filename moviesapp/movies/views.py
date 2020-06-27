@@ -22,7 +22,8 @@ def json(obj):
 
 class MovieListView(ListView):
     """Show all movies."""
-
+    # I did the calculation for the rating on the front end. 
+    # For a Valuation Software those calculations should probably be done on the back end.
     model = Movie
     def get(self, *args, **kwargs):
         response = HttpResponse(json(Movie.objects.all()))
@@ -31,7 +32,7 @@ class MovieListView(ListView):
 class MovieDetailView(DetailView):
     """Show the requested movie."""
 
-    # this sends an array back and I am not going to fix it just for the sake of time
+    # this sends an array back I need to fix it.
     def get(self, *args, **kwargs):
         response = HttpResponse(json(Movie.objects.filter(pk=kwargs['isbn'])))
         return response
@@ -42,6 +43,7 @@ class MovieDetailView(DetailView):
 class MovieCreateView(CreateView):
     """Create a new movie."""
     model = Movie
+    # should be POST
     def get(self, *args, **kwargs):
         title = self.request.GET.get('title')
         year = self.request.GET.get('year')
@@ -65,7 +67,9 @@ class MovieCreateView(CreateView):
 class MovieUpdateView(UpdateView):
     """Update the requested movie."""
     model = Movie
-
+    # using GET here and using query params is not how this needs to be done
+    # for the tests to pass and its not how it should be done in production.
+    # given a bit more time I would make this work with a post.
     def get(self, *args, **kwargs):
         m = Movie.objects.get(pk=kwargs['isbn'])
         params = [
@@ -76,16 +80,28 @@ class MovieUpdateView(UpdateView):
            'genre',
            'director',
            'plot',
-           'rating'
+           'created_at',
+           'updated_at'
         ]
 
+        # I realize now this is pretty slow dispite using less code.
+        # Another solution might be better... And I need to use a post.
         for param in params:
             p = self.request.GET.get(param)
             if p is not None:
-                print()
                 setattr(m, param, p)
                 m.save()
+        
+        rating = self.request.GET.get('rating')
+        if rating is not None:
+            m.total_rating += int(rating)
+            m.num_of_ratings += 1
+            m.save()
 
+        
+        
+        
+        # this needs to send meaningful data back
         return JsonResponse({
             'success': True
         })
@@ -97,6 +113,8 @@ class MovieDeleteView(DeleteView):
     def get(self, *args, **kwargs):
         m = Movie.objects.get(pk=kwargs['isbn'])
         m.delete()
+
+        # this needs to send meaningful data back
         return JsonResponse({
             "success": True
         })

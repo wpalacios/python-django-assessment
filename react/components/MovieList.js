@@ -36,7 +36,9 @@ class MovieList extends Component {
                         </div>
                     );
                 })}
-                <div className='LIST__ADD'><MdAdd /></div>
+                <div className='LIST__ADD'
+                    onClick={() => this.props.navigate(PAGES.CREATE_PAGE)}
+                ><MdAdd /></div>
                 
             </div>
         );

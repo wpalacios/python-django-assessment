@@ -46,4 +46,8 @@
     padding-top: .7rem;
     border-radius: .6rem;
     color: $white;
+    &:hover {
+        background-color: $light-contrast-color;
+        cursor: pointer;
+    }
 }
