@@ -1,5 +1,9 @@
-{% extends 'base.html' %} {% load static i18n %} {% block title %}{% trans
-'Movie' %}: {{ movie.title }}{% endblock %} {% block content %}
+{% extends 'base.html' %} 
+{% load static i18n %} 
+{% block title %}
+  {{ movie.title }}
+{% endblock %} 
+{% block content %}
 <h3>{{ movie.title }}</h3>
 <div class="row">
   <div class="col-sm-12">
