@@ -13,13 +13,12 @@ from .models import Movie
 
 class MovieListView(ListView):
     """Show all movies."""
-
     model = Movie
-
+    context_object_name = 'movie_list'
 
 class MovieDetailView(DetailView):
     """Show the requested movie."""
-
+    model = Movie
 
 class MovieCreateView(CreateView):
     """Create a new movie."""
