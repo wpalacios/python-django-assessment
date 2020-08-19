@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404
 from django.http import Http404
 from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
 
 from .models import Movie
 from .forms import MovieModelForm
@@ -28,15 +29,26 @@ class MovieDetailView(DetailView):
     def get_object(self):
         return get_object_or_404(Movie, **self.kwargs)
 
-class MovieCreateView(CreateView):
+class MovieCreateView(SuccessMessageMixin, CreateView):
     """Create a new movie."""
     template_name = 'movies/movie_form.html'
     form_class = MovieModelForm
     queryset = Movie.objects.all()
+    success_message = "The movie created successfully"
 
 class MovieUpdateView(UpdateView):
     """Update the requested movie."""
-
+    template_name = 'movies/movie_form.html'
+    form_class = MovieModelForm
+    queryset = Movie.objects.all()
+    success_message = "The movie updated successfully"
+    def get(self, request, *args, **kwargs):
+        try:
+            return super(MovieUpdateView, self).get(request, *args, **kwargs)
+        except Http404:
+            return redirect('/movies')
+    def get_object(self):
+        return get_object_or_404(Movie, **self.kwargs)
 
 class MovieDeleteView(DeleteView):
     """Delete the requested movie."""
