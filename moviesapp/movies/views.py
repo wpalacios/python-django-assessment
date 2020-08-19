@@ -36,7 +36,7 @@ class MovieCreateView(SuccessMessageMixin, CreateView):
     queryset = Movie.objects.all()
     success_message = "The movie created successfully"
 
-class MovieUpdateView(UpdateView):
+class MovieUpdateView(SuccessMessageMixin, UpdateView):
     """Update the requested movie."""
     template_name = 'movies/movie_form.html'
     form_class = MovieModelForm
@@ -52,3 +52,16 @@ class MovieUpdateView(UpdateView):
 
 class MovieDeleteView(DeleteView):
     """Delete the requested movie."""
+    model = Movie
+    success_url = '/movies'
+    def get(self, request, *args, **kwargs):
+        try:
+            return super(MovieDeleteView, self).get(request, *args, **kwargs)
+        except Http404:
+            return redirect('/movies')
+    def get_object(self):
+        return get_object_or_404(Movie, **self.kwargs)
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(self.request, 'The movie deleted successfully')
+        return response
