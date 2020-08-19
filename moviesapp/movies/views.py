@@ -9,7 +9,7 @@ from django.http import Http404
 from django.urls import reverse_lazy
 
 from .models import Movie
-
+from .forms import MovieModelForm
 
 class MovieListView(ListView):
     """Show all movies."""
@@ -30,7 +30,9 @@ class MovieDetailView(DetailView):
 
 class MovieCreateView(CreateView):
     """Create a new movie."""
-
+    template_name = 'movies/movie_form.html'
+    form_class = MovieModelForm
+    queryset = Movie.objects.all()
 
 class MovieUpdateView(UpdateView):
     """Update the requested movie."""
