@@ -22,12 +22,12 @@
       </td>
       <td>{{ movie.title }}</td>
       <td>{{ movie.released_on }}</td>
-      <td class="text-center"><a href="{% url 'movie:update' movie.pk %}">Edit</a></td>
-      <td class="text-center"><a href="{% url 'movie:delete' movie.pk %}">Delete</a></td>
+      <td class="text-center"><a href="{% url 'movies:update' movie.pk %}">Edit</a></td>
+      <td class="text-center"><a href="{% url 'movies:delete' movie.pk %}">Delete</a></td>
     </tr>
     {% endfor %}
     <tr>
-      <td colspan="6"><a href="{% url 'movie:create' %}">Add new movie</a></td>
+      <td colspan="6"><a href="{% url 'movies:create' %}">Add new movie</a></td>
     </tr>
   </tbody>
 </table>
