@@ -15,8 +15,7 @@ class Movie(models.Model):
     director = models.CharField(max_length=255)
     plot = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    updated_at = models.DateTimeField(auto_now=True, editable=False)
-    # Todo: add Rating models
+    updated_at = models.DateTimeField(auto_now=True, editable=False) 
 
     class Meta:
         ordering = ["-released_on"]
@@ -26,3 +25,14 @@ class Movie(models.Model):
 
     def get_absolute_url(self):
         return reverse('movies:detail', kwargs={'id': self.id})
+
+class Rating(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    STARS = [
+        ('1', '1'),
+        ('2', '2'),
+        ('3', '3'),
+        ('4', '4'),
+        ('5', '5')
+    ]
+    rating_number = models.CharField(max_length=1, choices=STARS, default='1')

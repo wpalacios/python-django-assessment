@@ -11,6 +11,8 @@
       <th>Id</th>
       <th>Title</th>
       <th>Released on</th>
+      <th>Votes</th>
+      <th>Stars</th>
       <th colspan="2" class="text-center"><strong>Action</strong></th>
     </tr>
   </thead>
@@ -22,6 +24,8 @@
       </td>
       <td>{{ movie.title }}</td>
       <td>{{ movie.released_on }}</td>
+      <td>{{ movie.num_votes }}</td>
+      <td>{{ movie.avg_rating }}</td>
       <td class="text-center"><a href="{% url 'movies:update' movie.pk %}">Edit</a></td>
       <td class="text-center"><a href="{% url 'movies:delete' movie.pk %}">Delete</a></td>
     </tr>

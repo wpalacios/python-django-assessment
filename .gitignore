@@ -1,3 +1,6 @@
+# Database
+moviesapp.db
+
 .vscode
 *.egg-info/
 *.__pychache__

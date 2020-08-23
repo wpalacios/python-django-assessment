@@ -18,5 +18,21 @@
       <dd><strong>Updated at:</strong> {{ movie.updated_at }}</dd>
     </dl>
   </div>
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+  <form action="{% url 'movies:vote' movie.id %}" method="post">
+    {% csrf_token %}
+    <input type="radio" name="rating" id="star1" value="1">
+    <label for="star1">1 star</label><br>
+    <input type="radio" name="rating" id="star2" value="2">
+    <label for="star2">2 stars</label><br>
+    <input type="radio" name="rating" id="star3" value="3">
+    <label for="star3">3 stars</label><br>
+    <input type="radio" name="rating" id="star4" value="4">
+    <label for="star4">4 stars</label><br>
+    <input type="radio" name="rating" id="star5" value="5">
+    <label for="star5">5 stars</label><br>
+    <input type="submit" value="Vote">
+  </form>
 </div>
 {% endblock %}
