@@ -86,6 +86,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(APPS_DIR, 'templates/'),
+            os.path.join(ROOT_DIR, 'ui/build'),
         ],
         'OPTIONS': {
             'debug': DEBUG,
@@ -111,6 +112,7 @@ STATIC_ROOT = os.path.join(ROOT_DIR, 'staticfiles/')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(APPS_DIR, 'static/'),
+    os.path.join(ROOT_DIR, 'ui/build/static'),
 )
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
