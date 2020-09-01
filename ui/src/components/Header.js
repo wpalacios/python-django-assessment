@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
+import logo from '../img/scalar-logo.png';
+
 import {
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
-  NavLink
+  NavItem
 } from 'reactstrap';
-import logo from '../img/scalar-logo.png';
 
 const links = [
-  { href: '#', text: 'Home'},
-  { href: '/movies', text: 'Movies'},
-  { href: '/admin', text: 'Admin'}
+  { uri: '/', text: 'Home'},
+  { uri: '/movies', text: 'Movies'}
 ];
 
-const createNavItem = ({ href, text }) => (
+const createNavItem = ({ uri, text }) => (
   <NavItem>
-    <NavLink href={href}>{text}</NavLink>
+    <NavLink to={uri} style={{ marginRight: 10 }}>{text}</NavLink>
   </NavItem>
 )
 
@@ -49,6 +49,7 @@ class Header extends Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 {links.map(createNavItem)}
+                <a href="/admin">Admin</a>
               </Nav>
             </Collapse>
           </div>

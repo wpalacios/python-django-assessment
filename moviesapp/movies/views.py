@@ -2,7 +2,7 @@
 
 """Movies views."""
 
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+# from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404
 from django.http import Http404, HttpResponseRedirect
@@ -11,50 +11,42 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Avg, Count
 from django.db.models.functions import Coalesce
 
-from .models import Movie, Rating
-from .forms import MovieModelForm
+# API
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateAPIView, DestroyAPIView
+from .serializers import *
 
-class MovieListView(ListView):
+from .models import Movie, Rating
+# from .forms import MovieModelForm
+
+class MovieListView(SuccessMessageMixin, ListAPIView):
     """Show all movies."""
     queryset = Movie.objects.annotate(num_votes=Count('rating'), avg_rating=Coalesce(Avg('rating__rating_number'), 0))
-    context_object_name = 'movie_list'
+    #context_object_name = 'movie_list'
+    serializer_class = MovieSerializer
 
-class MovieDetailView(DetailView):
+class MovieCreateView(SuccessMessageMixin, CreateAPIView):
+    """Create a new movie."""
+    serializer_class = MovieSerializer
+    success_message = "The movie created successfully"
+
+class MovieRetrieveUpdateView(SuccessMessageMixin, RetrieveUpdateAPIView):
     """Show the requested movie."""
     model = Movie
     context_object_name = 'movie'
+    serializer_class = MovieSerializer
+    success_message = "The movie updated successfully"
     def get(self, request, *args, **kwargs):
         try:
-            return super(MovieDetailView, self).get(request, *args, **kwargs)
+            return super(MovieRetrieveUpdateView, self).get(request, *args, **kwargs)
         except Http404:
             return redirect('/')
     def get_object(self):
         return get_object_or_404(Movie, **self.kwargs)
 
-class MovieCreateView(SuccessMessageMixin, CreateView):
-    """Create a new movie."""
-    template_name = 'movies/movie_form.html'
-    form_class = MovieModelForm
-    queryset = Movie.objects.all()
-    success_message = "The movie created successfully"
-
-class MovieUpdateView(SuccessMessageMixin, UpdateView):
-    """Update the requested movie."""
-    template_name = 'movies/movie_form.html'
-    form_class = MovieModelForm
-    queryset = Movie.objects.all()
-    success_message = "The movie updated successfully"
-    def get(self, request, *args, **kwargs):
-        try:
-            return super(MovieUpdateView, self).get(request, *args, **kwargs)
-        except Http404:
-            return redirect('/movies')
-    def get_object(self):
-        return get_object_or_404(Movie, **self.kwargs)
-
-class MovieDeleteView(DeleteView):
+class MovieDeleteView(DestroyAPIView):
     """Delete the requested movie."""
     model = Movie
+    serializer_class = MovieSerializer
     success_url = '/movies'
     def get(self, request, *args, **kwargs):
         try:

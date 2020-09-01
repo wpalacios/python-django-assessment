@@ -28,7 +28,10 @@ DJANGO_APPS = (
     # Admin
     'django.contrib.admin',
 )
-THIRD_PARTY_APPS = ()
+THIRD_PARTY_APPS = (
+    'corsheaders',
+    'rest_framework',
+)
 
 LOCAL_APPS = (
     'moviesapp.movies.apps.MoviesConfig',
@@ -147,3 +150,10 @@ AUTHENTICATION_BACKENDS = (
 )
 
 ADMIN_URL = 'admin/'
+
+# Hide the Browsable API
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ]
+}
