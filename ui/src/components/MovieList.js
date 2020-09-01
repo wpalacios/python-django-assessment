@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
+import NewMovieModal from './NewMovieModal';
 
 class MovieList extends Component {
     render() {
@@ -31,7 +32,13 @@ class MovieList extends Component {
                                <td>{movie.released_on}</td>
                                <td>{movie.num_votes}</td>
                                <td>{movie.avg_rating}</td>
-                               <td></td>
+                               <td>
+                                    <NewMovieModal
+                                        create={false}
+                                        movie={movie}
+                                        resetState={this.props.resetState} 
+                                    />
+                               </td>
                                <td></td>
                             </tr>
                         ))

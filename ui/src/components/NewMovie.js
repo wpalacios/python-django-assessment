@@ -35,7 +35,7 @@ class NewMovie extends Component {
 
     editMovie = e => {
         e.preventDefault();
-        axios.put('movies/update/' + this.state.pk, this.state).then(() => {
+        axios.put('movies/update/' + this.state.pk + '/', this.state).then(() => {
             this.props.resetState();
             this.props.toggle();
         });
