@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import MovieList from './MovieList';
+import NewMovieModal from './NewMovieModal';
 
 import axios from 'axios';
 
@@ -14,7 +15,7 @@ class Main extends Component {
     }
 
     getMovies = () => {
-        axios.get('http://localhost:8000/movies/api/all/')
+        axios.get('movies/api/all/')
         .then(res => this.setState({ movies: res.data }));
     };
 
@@ -31,6 +32,11 @@ class Main extends Component {
                             movies = {this.state.movies}
                             resetState = {this.resetState}
                         />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <NewMovieModal create={true} resetState={this.resetState} />
                     </Col>
                 </Row>
             </Container>

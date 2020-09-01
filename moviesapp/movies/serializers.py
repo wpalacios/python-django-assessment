@@ -4,8 +4,8 @@ from .models import Movie
 class MovieSerializer(serializers.ModelSerializer):
 
     # Calculated fields
-    num_votes = serializers.IntegerField()
-    avg_rating = serializers.FloatField()
+    num_votes = serializers.IntegerField(read_only=True)
+    avg_rating = serializers.FloatField(read_only=True)
 
     class Meta:
         model = Movie
