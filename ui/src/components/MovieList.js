@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import NewMovieModal from './NewMovieModal';
+import RemoveMovieModal from './RemoveMovieModal';
 
 class MovieList extends Component {
     render() {
         const movies = this.props.movies;
         return (
-            <Table>
+            <Table className="table-striped">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -14,7 +15,7 @@ class MovieList extends Component {
                         <th>Released on</th>
                         <th>Votes</th>
                         <th>Stars</th>
-                        <th colSpan="2">Action</th>
+                        <th colSpan="2" className="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,14 +33,20 @@ class MovieList extends Component {
                                <td>{movie.released_on}</td>
                                <td>{movie.num_votes}</td>
                                <td>{movie.avg_rating}</td>
-                               <td>
+                               <td className="text-center">
                                     <NewMovieModal
                                         create={false}
                                         movie={movie}
                                         resetState={this.props.resetState} 
                                     />
                                </td>
-                               <td></td>
+                               <td className="text-center">
+                                    <RemoveMovieModal
+                                        pk={movie.pk}
+                                        title={movie.title}
+                                        resetState={this.props.resetState}
+                                    />
+                               </td>
                             </tr>
                         ))
                     )}
