@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Table } from 'reactstrap';
 import NewMovieModal from './NewMovieModal';
 import RemoveMovieModal from './RemoveMovieModal';
+import MovieDetailModal from './MovieDetailModal';
 
 class MovieList extends Component {
     render() {
@@ -10,12 +11,11 @@ class MovieList extends Component {
             <Table className="table-striped">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Title</th>
                         <th>Released on</th>
                         <th>Votes</th>
                         <th>Stars</th>
-                        <th colSpan="2" className="text-center">Action</th>
+                        <th colSpan="3" className="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,11 +28,16 @@ class MovieList extends Component {
                     ) : (
                         movies.map(movie => (
                             <tr key={movie.pk}>
-                               <td>{movie.pk}</td> 
                                <td>{movie.title}</td>
                                <td>{movie.released_on}</td>
                                <td>{movie.num_votes}</td>
                                <td>{movie.avg_rating}</td>
+                               <td className="text-center">
+                                    <MovieDetailModal
+                                        pk={movie.pk}
+                                        resetState={this.props.resetState} 
+                                    />
+                               </td>
                                <td className="text-center">
                                     <NewMovieModal
                                         create={false}

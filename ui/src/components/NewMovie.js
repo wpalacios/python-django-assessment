@@ -111,7 +111,7 @@ class NewMovie extends Component {
                         value={this.defaultIfEmpty(this.state.plot)}
                     />                    
                 </FormGroup>
-                <Button>Send</Button>
+                <Button>Save</Button>
             </Form>
         );
     }

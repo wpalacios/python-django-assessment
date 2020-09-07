@@ -3,6 +3,7 @@
 """Movies views."""
 
 # from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+import json
 from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404
 from django.http import Http404, HttpResponseRedirect
@@ -61,7 +62,9 @@ class MovieDeleteView(DestroyAPIView):
         return response
 
 def vote(request, movie_id):
-    rating = Rating(movie_id=movie_id, rating_number=request.POST['rating'])
+    body = json.loads(request.body)
+    rating = body['rating']
+    rating = Rating(movie_id=movie_id, rating_number=rating)
     rating.save()
     messages.success(request, 'Your vote was recorded successfully')
     return HttpResponseRedirect(reverse('movies:index'))

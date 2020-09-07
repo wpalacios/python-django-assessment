@@ -16,12 +16,12 @@ class NewMovieModal extends Component {
     render() {
         const create = this.props.create;
         var caption = "Updating movie";
-        var button = <Button onClick={this.toggle}>Update</Button>;
+        var button = <Button className="warning" onClick={this.toggle}>Update</Button>;
         if (create) {
             caption = "Creating new movie";
             button = (
                 <Button
-                  color="primary"
+                  color="success"
                   className="float-right"
                   onClick={this.toggle}
                   style={{ minWidth: "150px" }}
