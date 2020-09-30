@@ -3,11 +3,15 @@ import { Table } from 'reactstrap';
 import NewMovieModal from './NewMovieModal';
 import RemoveMovieModal from './RemoveMovieModal';
 import MovieDetailModal from './MovieDetailModal';
+import Message from './Message';
 
 class MovieList extends Component {
     render() {
         const movies = this.props.movies;
+        const message = this.props.message;
         return (
+            <div>
+                <Message message={message} />
             <Table className="table-striped">
                 <thead>
                     <tr>
@@ -57,6 +61,7 @@ class MovieList extends Component {
                     )}
                 </tbody>
             </Table>
+            </div>
         );
     }
 }

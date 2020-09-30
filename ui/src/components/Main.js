@@ -7,20 +7,37 @@ import axios from 'axios';
 
 class Main extends Component {
     state = {
-        movies: []
+        movies: [],
+        message: ""
     };
 
     componentDidMount() {
-        this.resetState();
+        this.resetState("list");
     }
 
-    getMovies = () => {
-        axios.get('movies/api/all/')
-        .then(res => this.setState({ movies: res.data }));
+    getMovies = (message) => {
+        axios.get('movies/')
+        .then(res => this.setState({ movies: res.data, message: message }));
     };
 
-    resetState = () => {
-        this.getMovies();
+    resetState = (origin) => {
+        var message = "";
+        switch(origin) {
+            case "list":
+                message = "";
+                break;
+            case "update":
+                message = "The movie was updated successfully";
+                break;
+            case "create":
+                message = "The movie was created successfully";
+                break;
+            case "vote":
+                message = "Your vote was recorded successfully";
+                break;
+        }
+        this.getMovies(message);
+        setTimeout(() => this.setState({ message: "" }), 3000);
     };
 
     render() {
@@ -31,6 +48,7 @@ class Main extends Component {
                         <MovieList
                             movies = {this.state.movies}
                             resetState = {this.resetState}
+                            message = {this.state.message}
                         />
                     </Col>
                 </Row>

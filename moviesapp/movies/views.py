@@ -13,6 +13,7 @@ from django.db.models import Avg, Count
 from django.db.models.functions import Coalesce
 
 # API
+from rest_framework.response import Response
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateAPIView, DestroyAPIView
 from .serializers import *
 
@@ -29,6 +30,13 @@ class MovieCreateView(SuccessMessageMixin, CreateAPIView):
     """Create a new movie."""
     serializer_class = MovieSerializer
     success_message = "The movie created successfully"
+    def create(self, request, *args, **kwargs):
+        response = super().create(request, *args, **kwargs)
+        return Response({
+            'status': 200,
+            'message': 'The movie created successfully',
+            'data': response.data
+        })
 
 class MovieRetrieveUpdateView(SuccessMessageMixin, RetrieveUpdateAPIView):
     """Show the requested movie."""

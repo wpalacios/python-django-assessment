@@ -6,7 +6,7 @@ from . import views
 app_name = 'movies'
 
 urlpatterns = [
-    path('api/all/', view=views.MovieListView.as_view(), name='index'),
+    path('', view=views.MovieListView.as_view(), name='index'),
     path('<int:id>/', view=views.MovieRetrieveUpdateView.as_view(), name='detail'),
     path('create/', view=views.MovieCreateView.as_view(), name='create'),
     path('update/<int:id>/', view=views.MovieRetrieveUpdateView.as_view(), name='update'),

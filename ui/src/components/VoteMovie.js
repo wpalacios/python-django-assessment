@@ -18,7 +18,7 @@ class VoteMovie extends Component {
     voteMovie = e => {
         e.preventDefault();
         axios.post('movies/' + this.props.pk + '/vote/', {rating: this.state.selectedStar}).then((data) => {
-            this.props.resetState();
+            this.props.resetState("vote");
             this.props.toggle();
         });
     };
