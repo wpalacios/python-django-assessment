@@ -11,12 +11,20 @@ class Main extends Component {
         message: ""
     };
 
+    getToken = () => {
+        return localStorage.getItem("accessToken");
+    }
+
     componentDidMount() {
         this.resetState("list");
     }
 
     getMovies = (message) => {
-        axios.get('movies/')
+        axios.get('movies/', {
+            headers: {
+                Authorization: `Token ${this.getToken()}`
+            }
+        })
         .then(res => this.setState({ movies: res.data, message: message }));
     };
 
@@ -31,6 +39,9 @@ class Main extends Component {
                 break;
             case "create":
                 message = "The movie was created successfully";
+                break;
+            case "remove":
+                message = "The movie was removed successfully";
                 break;
             case "vote":
                 message = "Your vote was recorded successfully";
@@ -49,12 +60,17 @@ class Main extends Component {
                             movies = {this.state.movies}
                             resetState = {this.resetState}
                             message = {this.state.message}
+                            getToken = {this.getToken}
                         />
                     </Col>
                 </Row>
                 <Row>
                     <Col>
-                        <NewMovieModal create={true} resetState={this.resetState} />
+                        <NewMovieModal 
+                            create={true} 
+                            resetState={this.resetState} 
+                            getToken={this.getToken}
+                        />
                     </Col>
                 </Row>
             </Container>

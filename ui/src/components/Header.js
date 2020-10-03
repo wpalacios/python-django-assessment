@@ -23,15 +23,12 @@ const createNavItem = ({ uri, text }) => (
 )
 
 class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      isOpen: false,
-      navCollapsed: true,
-      showNavBar: false
-    };
-  }
+  
+  state = {
+    isOpen: false,
+    navCollapsed: true,
+    showNavBar: false
+  };
 
   toggle() {
     this.setState({
@@ -47,10 +44,12 @@ class Header extends Component {
             <NavbarBrand href="#"><img src={logo} width="200" alt="Scalar"/></NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
             <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                {links.map(createNavItem)}
-                <a href="/admin">Admin</a>
-              </Nav>
+              {this.state.showNavBar && 
+                <Nav className="ml-auto" navbar>
+                  {links.map(createNavItem)}
+                  <a href="/admin">Admin</a>
+                </Nav>
+              }
             </Collapse>
           </div>
         </Navbar>

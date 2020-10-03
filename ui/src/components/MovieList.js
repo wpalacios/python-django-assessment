@@ -35,11 +35,12 @@ class MovieList extends Component {
                                <td>{movie.title}</td>
                                <td>{movie.released_on}</td>
                                <td>{movie.num_votes}</td>
-                               <td>{movie.avg_rating}</td>
+                               <td>{Math.round(movie.avg_rating * 100) / 100}</td>
                                <td className="text-center">
                                     <MovieDetailModal
                                         pk={movie.pk}
                                         resetState={this.props.resetState} 
+                                        getToken={this.props.getToken}
                                     />
                                </td>
                                <td className="text-center">
@@ -47,6 +48,7 @@ class MovieList extends Component {
                                         create={false}
                                         movie={movie}
                                         resetState={this.props.resetState} 
+                                        getToken={this.props.getToken}
                                     />
                                </td>
                                <td className="text-center">
@@ -54,6 +56,7 @@ class MovieList extends Component {
                                         pk={movie.pk}
                                         title={movie.title}
                                         resetState={this.props.resetState}
+                                        getToken={this.props.getToken}
                                     />
                                </td>
                             </tr>

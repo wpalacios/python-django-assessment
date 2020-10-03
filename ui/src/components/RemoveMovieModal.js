@@ -14,8 +14,12 @@ class RemoveMovieModal extends Component {
     };
 
     deleteMovie = pk => {
-        axios.delete('movies/delete/' + pk + '/').then(() => {
-            this.props.resetState();
+        axios.delete('movies/delete/' + pk + '/', {
+            headers: {
+                Authorization: `Token ${this.props.getToken()}`
+            }
+        }).then(() => {
+            this.props.resetState("remove");
             this.toggle();
         });
     };

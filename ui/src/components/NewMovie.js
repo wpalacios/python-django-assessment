@@ -27,7 +27,11 @@ class NewMovie extends Component {
 
     createMovie = e => {
         e.preventDefault();
-        axios.post('movies/create/', this.state).then(() => {
+        axios.post('movies/create/', this.state, {
+            headers: {
+                Authorization: `Token ${this.props.getToken()}`
+            }
+        }).then(() => {
             this.props.resetState("create");
             this.props.toggle();
         });
@@ -35,7 +39,11 @@ class NewMovie extends Component {
 
     editMovie = e => {
         e.preventDefault();
-        axios.put('movies/update/' + this.state.pk + '/', this.state).then(() => {
+        axios.put('movies/update/' + this.state.pk + '/', this.state, {
+            headers: {
+                Authorization: `Token ${this.props.getToken()}`
+            }
+        }).then(() => {
             this.props.resetState("update");
             this.props.toggle();
         });

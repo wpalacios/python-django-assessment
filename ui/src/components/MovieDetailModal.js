@@ -9,7 +9,11 @@ class MovieDetailModal extends Component {
     };
 
     getMovie = () => {
-        axios.get('movies/' + this.props.pk + '/')
+        axios.get('movies/' + this.props.pk + '/', {
+            headers: {
+                Authorization: `Token ${this.props.getToken()}`
+            }
+        })
         .then(res => this.setState(res.data));
     };
 
@@ -47,6 +51,7 @@ class MovieDetailModal extends Component {
                             resetState={this.props.resetState}
                             pk={this.state.pk}
                             toggle={this.toggle}
+                            getToken={this.props.getToken}
                         />
                     </ModalBody>
                 </Modal>

@@ -40,6 +40,7 @@ class NewMovieModal extends Component {
                                 resetState={this.props.resetState}
                                 toggle={this.toggle}
                                 movie={this.props.movie}
+                                getToken={this.props.getToken}
                             />
                         </ModalBody>
                     </Modal>
