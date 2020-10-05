@@ -7,7 +7,8 @@ import {
     FormGroup,
     Label,
     Input,
-    Button
+    Button,
+    FormFeedback
 } from 'reactstrap';
 import axios from 'axios';
 import '../App.css';
@@ -16,16 +17,21 @@ class LoginForm extends Component {
     state = {
         username: "",
         password: "",
-        isAuthenticated: false
+        isAuthenticated: false,
+        invalid: false
     };
 
     onSubmit = e => {
         e.preventDefault();
-        axios.post('movies/auth/', this.state).then(res => {
+        axios.post('movies/auth/', this.state)
+        .then(res => {
             if (res.status == 200) {
                 this.setState({ isAuthenticated: true });
                 localStorage.setItem("accessToken", res.data.token);
             }
+        })
+        .catch(() => {
+            this.setState({ invalid: true })
         });
     };
 
@@ -62,7 +68,9 @@ class LoginForm extends Component {
                                 id="password"
                                 placeholder="Enter your password"
                                 onChange={this.onChange}
+                                invalid={this.state.invalid}
                             />
+                            <FormFeedback>Invalid credentials</FormFeedback>
                         </FormGroup>
                     </Col>
                     <Col>

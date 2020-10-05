@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, FormFeedback } from 'reactstrap';
 import axios from 'axios';
 
 class NewMovie extends Component {
@@ -11,7 +11,8 @@ class NewMovie extends Component {
         released_on: '',
         genre: '',
         director: '',
-        plot: ''
+        plot: '',
+        invalid: false
     };
 
     componentDidMount() {
@@ -34,6 +35,8 @@ class NewMovie extends Component {
         }).then(() => {
             this.props.resetState("create");
             this.props.toggle();
+        }).catch(() => {
+            this.state({ invalid: true })
         });
     };
 
@@ -46,6 +49,8 @@ class NewMovie extends Component {
         }).then(() => {
             this.props.resetState("update");
             this.props.toggle();
+        }).catch(() => {
+            this.setState({ invalid: true })
         });
     };
 
@@ -63,7 +68,9 @@ class NewMovie extends Component {
                         name="title"
                         onChange={this.onChange}
                         value={this.defaultIfEmpty(this.state.title)}
-                    />                    
+                        invalid={this.state.invalid}
+                    />        
+                    <FormFeedback>The changes could not be saved. Make sure there is not a movie with the same title already.</FormFeedback>            
                 </FormGroup>
                 <FormGroup>
                     <Label for="year">Year:</Label>
